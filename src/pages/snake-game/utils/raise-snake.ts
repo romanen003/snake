@@ -6,7 +6,7 @@ type PropsType = {
     snake: SnakeBodyType
 }
 
-export const growSnake = ({ direction, snake }: PropsType): SnakeBodyType  => {
+export const raiseSnake = ({ direction, snake }: PropsType): SnakeBodyType  => {
     const nextSnake = [...snake];
     const headSnake = nextSnake.slice(-1)[0];
 

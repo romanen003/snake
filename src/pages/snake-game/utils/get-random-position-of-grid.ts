@@ -1,6 +1,19 @@
-export const getGrid = (gridSize: number) => {
-    return Array(gridSize * gridSize).fill(0).map((item, index) => ({
-        row: Math.floor(index / gridSize),
-        col: index % gridSize,
-    }));
+import { SnakeBodyType, FoodType } from "../types";
+
+type PropsType = {
+    gridSize: number,
+    snake: SnakeBodyType
+}
+
+export const getRandomGrid = ({ gridSize, snake }: PropsType): FoodType => {
+    const newPosition =  {
+        row: Math.floor((Math.random() * gridSize)),
+        col: Math.floor((Math.random() * gridSize))
+    }
+
+    if (snake.some(bodyItem => bodyItem.row === newPosition.row && bodyItem.col === newPosition.col)) {
+        return getRandomGrid({snake, gridSize});
+    }
+
+    return  newPosition
 }
